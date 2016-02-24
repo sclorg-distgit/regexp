@@ -36,13 +36,15 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.5
-Release:        13.14%{?dist}
+Release:        13.15%{?dist}
 Epoch:          0
 Summary:        Simple regular expressions API
 License:        ASL 2.0
 Url:            http://jakarta.apache.org/%{pkg_name}/
 Source0:        http://www.apache.org/dist/jakarta/regexp/jakarta-regexp-%{version}.tar.gz
 Source1:        http://repo.maven.apache.org/maven2/%{full_name}/%{full_name}/1.4/%{full_name}-1.4.pom
+Source2:        %{full_name}-osgi-manifest.MF
+Patch0:         %{full_name}-attach-osgi-manifest.patch
 BuildRequires:  %{?scl_prefix}javapackages-tools
 
 BuildRequires:  %{?scl_prefix}ant >= 1.6
@@ -64,6 +66,8 @@ Javadoc for %{pkg_name}.
 
 %prep
 %setup -q -n %{full_name}-%{version}
+%patch0
+cp -p %{SOURCE2} MANIFEST.MF
 %{?scl:scl enable %{scl_maven} %{scl} - <<"EOF"}
 set -e -x
 # remove all binary libs
@@ -108,6 +112,9 @@ ant -Djakarta-site2.dir=. test
 %doc %{_javadocdir}/%{name}
 
 %changelog
+* Thu Jan 28 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 0:1.5-13.15
+- Add OSGi manifest
+
 * Tue Jan 13 2015 Michael Simacek <msimacek@redhat.com> - 0:1.5-13.14
 - Mass rebuild 2015-01-13
 
