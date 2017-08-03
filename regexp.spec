@@ -4,7 +4,7 @@
 Name:           %{?scl_prefix}regexp
 Epoch:          1
 Version:        1.5
-Release:        24.1%{?dist}
+Release:        24.2%{?dist}
 Summary:        Simple regular expressions API
 License:        ASL 2.0
 URL:            http://jakarta.apache.org/%{pkg_name}/
@@ -78,6 +78,9 @@ dummy = posix.readlink(dir) and os.remove(dir)
 %doc LICENSE
 
 %changelog
+* Thu Jun 22 2017 Michael Simacek <msimacek@redhat.com> - 1:1.5-24.2
+- Mass rebuild 2017-06-22
+
 * Wed Jun 21 2017 Java Maintainers <java-maint@redhat.com> - 1:1.5-24.1
 - Automated package import and SCL-ization
 
